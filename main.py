@@ -8,6 +8,7 @@ from antlr4.tree.Trees import Trees
 from MyYAPLVisitor import MyYAPLVisitor
 from MyYAPLNewVisitor import MyYAPLNewVisitor
 from ThreeAddressCodeVisitor import ThreeAddressCodeVisitor
+from MipsCodeGenerator import MipsCodeGenerator
 from objects.Error import Error
 
 import tkinter as tk
@@ -87,6 +88,11 @@ def main(program, windowErrors, windowThreeAddressCode):
         stringOfThreeAddressCode = 'Compiler Error: Cant generate 3-address code if there are syntax errors in loaded file, please fix them and try again'
 
     windowThreeAddressCode.insert(tk.END,str(stringOfThreeAddressCode))
+
+    arrayOfThreeAddressCode = stringOfThreeAddressCode.split("\n")
+    mipsCodeGenerator = MipsCodeGenerator(arrayOfThreeAddressCode)
+    mipsCodeGenerator.generateMipsCode()
+    print(str(mipsCodeGenerator))
 
 if __name__ == "__main__":
     grafica()

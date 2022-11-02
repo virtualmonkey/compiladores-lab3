@@ -1,0 +1,11 @@
+def labelInterpreter(operator, arg1, result, arg2 = None):
+    if operator == "LBL": return f'\n{arg1}:'
+    if operator == "=" : return f'{result} {operator} {arg1}'
+    if operator == "<" or operator == "<=" or operator == "eq": return f'{arg1} {operator} {arg2} {result}'
+    if operator == "void": return f'{result} = isVoid {arg1}'
+    if operator == "!=": return f'{result} = not {arg1}'
+    if operator == 'INVOKE': return f'{operator} {arg1}'
+    if operator == "goto": return f'{operator} {arg1}'
+    if operator =='MALLOC_STACK' or operator =='MALLOC_HEAP': return f'{operator}[{arg1}]'
+    if arg2 != None: return f'{result} = {arg1} {operator} {arg2}'
+    else: return f'{result} = {operator}{arg1}'
